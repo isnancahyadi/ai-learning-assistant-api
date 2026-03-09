@@ -2,7 +2,12 @@ import type { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 import { AppError } from "~/utils";
 
-const globalErrorHandler = (err: Error, _req: Request, res: Response, _next: NextFunction) => {
+export const globalErrorHandler = (
+  err: Error,
+  _req: Request,
+  res: Response,
+  _next: NextFunction,
+) => {
   if (err instanceof ZodError) {
     const errorMessages = err.issues.map((issue) => ({
       field: issue.path.join("."),
@@ -30,5 +35,3 @@ const globalErrorHandler = (err: Error, _req: Request, res: Response, _next: Nex
     errors: null,
   });
 };
-
-export default globalErrorHandler;
