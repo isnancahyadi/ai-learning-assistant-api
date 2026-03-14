@@ -1,4 +1,5 @@
 import express, { type Application } from "express";
+import authRoutes from "./routes/auth.route";
 
 const app: Application = express();
 
@@ -11,5 +12,7 @@ app.get("/", (_req, res) => {
     uptime: process.uptime(),
   });
 });
+
+app.use("/api/auth", authRoutes);
 
 export default app;
