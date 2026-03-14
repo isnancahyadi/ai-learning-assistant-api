@@ -3,10 +3,10 @@ import { pgTable } from "drizzle-orm/pg-core";
 import { timestamps } from "./helper";
 
 const usersTable = pgTable("users", {
-  id: t.uuid().primaryKey().unique(),
-  username: t.varchar({ length: 16 }).unique().notNull(),
-  email: t.varchar({ length: 32 }).unique(),
-  password: t.varchar({ length: 18 }).notNull(),
+  id: t.uuid().primaryKey().unique().defaultRandom(),
+  username: t.varchar({ length: 12 }).unique().notNull(),
+  email: t.varchar({ length: 255 }).unique().notNull(),
+  password: t.varchar({ length: 255 }).notNull(),
   profileImage: t.text("profile_image"),
   ...timestamps,
 });
